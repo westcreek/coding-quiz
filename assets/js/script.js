@@ -1,18 +1,19 @@
+var startButton = document.getElementById("start-button");
+var countdownEl = document.getElementById("countdown");//add timer to a span 
 
-var targetTime = new Date().getTime() + 120000;
 
-var countdownElememnt = document.getElementById('countdown');
+startButton.addEventListener("click", function() {
+    var timeLeft = 120;
+    intervalId = setInterval(
+        function() {
+            timeLeft -= 1;
+            countdownEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(intervalId);
+            }
+        },
+        1000
+    );
+});
 
-function countdown() {
-    const now = new Date().getTime();
-        var remainingTime = targetTime - now;
 
-        if (remainingTime <= 0) {
-          clearInterval(intervalId);
-          textContent = 'Time is Up!';
-          return;
-        }
-
-}
-
-countdown();
