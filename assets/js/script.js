@@ -8,9 +8,9 @@ var initials = "";
 var timer;
 var timerCount;
 
-//Array of questions in the quiz 
-var questions = ["",""];
-var answerChoices = ["",""];
+//Array of questions and answers in the quiz 
+var questions = ["Which language is use to create the outline or structure of a website?","Which language is used to style a website?", "Which language is used to create functionarlity in a website?"];
+var answerChoices = ["CSS","JavaScript","HTML","C++",""];
 
 //initialize the quiz on page load
 // The init function is called when the page loads 
@@ -20,13 +20,13 @@ function init() {
 
   function getScore() {
     // Get stored value from client storage, if it exists
-    var storedScore = localStorage.getItem("winCount");
+    var storedScore = localStorage.getItem("scoreCount");
     // If stored value doesn't exist, set counter to 0
     if (storedWins === null) {
-      winCounter = 0;
+      scoreCounter = 0;
     } else {
       // If a value is retrieved from client storage set the winCounter to that value
-      winCounter = storedWins;
+      scoreCounter = storedScores;
     }
     //Render win count to page
     win.textContent = winCounter;
@@ -44,8 +44,8 @@ startButton.addEventListener("click", startGame) {
 });
 
 
-function winGame() {
-    wordBlank.textContent = "YOU WON!!!🏆 ";
+function completeRound() {
+    wordBlank.textContent = "This quiz round is complete!";
     scoreCounter++
     setWins()
   }
@@ -55,12 +55,14 @@ function winGame() {
     wordBlank.textContent = "Time's Up!";
     timerCount == 0;
     startButton.disabled = false;
-    setLosses()
+    setScore()
   }
 
-
-
-//pass what event looking for
+  // Updates score count on screen and sets score count to client storage
+function setScore() {
+    win.textContent = scoreCounter;
+    localStorage.setItem("scoreCount", scoreCounter);
+  }
 
 //call back function so timer begins
 // Starts and stops the timer and triggers winGame() and loseGame()
@@ -81,7 +83,7 @@ function startTimer() {
       if (timerCount === 0) {
         // Clears interval
         clearInterval(timer);
-        loseGame();
+        timeUp();
       }
     }, 1000);
   }
@@ -118,8 +120,7 @@ function resetGame() {
     winCounter = 0;
     loseCounter = 0;
     // Renders win and loss counts and sets them into client storage
-    setWins()
-    setLosses()
+    setScore()
   }
   // Attaches event listener to button
   resetButton.addEventListener("click", resetGame);
