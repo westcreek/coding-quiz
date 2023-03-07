@@ -1,16 +1,39 @@
-var startButton = document.querySelector(".start-button");
-var countdownEl = document.querySelector(".large-font timer-count");
-var score = document.querySelector(".score");
+var startButton = document.querySelector("#start-button");
+var countdownEl = document.querySelector("#countdown");
+var //score = document.querySelector(".score");
 
 var quiz = [];
 var scoreCounter = 0;
-var initials = "";
 var timer;
 var timerCount;
 
 //Array of questions and answers in the quiz 
-var questions = ["Which language is use to create the outline or structure of a website?","Which language is used to style a website?", "Which language is used to create functionarlity in a website?"];
-var answerChoices = ["CSS","JavaScript","HTML","C++",""];
+var questions = [
+  "Which language is use to create the outline or structure of a website?",
+  "Which language is used to style a website?", 
+  "Which language is used to create functionality in a website?"
+];
+
+var answerChoices = [ 
+  ["CSS","JavaScript","HTML","C++",""],
+  ["CSS","JavaScript","HTML","C++"],
+  ["CSS","JavaScript","HTML","C++"],
+]
+
+var correctAnswer = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+]
+
+var printQuestion = function {
+console.log(questions[0]);
+for(var i = 0, i <correctAnswer[0].length; i+= 1) {
+  console.log(correctAnswer[0][i])
+;
+}
+console.log(correctAnswer[0]);
+}
 
 //initialize the quiz on page load
 // The init function is called when the page loads 
